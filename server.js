@@ -31,10 +31,22 @@ var data={
     email:email,
     password:password
 }
-db.collection('detail').insertOne(data,function(err,res){
-if (err) throw err
+db.collection('detail').insertOne(data,function(err,result){
+if (err) {
+    console.log("error")
+  res.json(err)
+}else{
+    if(req.body.email==null){
+        console.log("fail")
+res.status(400).json(err)
+    }else{
+        console.log("succes insert",req.body.email)
+        res.status(200).json(data)
+    }
+    
+}
 //res.send(data)
-console.log(data)
+//console.log(data)
 });
 
 })
@@ -42,7 +54,12 @@ console.log(data)
 
 
 app.get('/home',function(req,res){
-res.send("hello world")
+
+    db.collection('detail').find({},function(err,data){
+res.json(data)
+
+    })
+//res.send("hello world")
 
 });
 

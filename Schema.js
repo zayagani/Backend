@@ -7,12 +7,14 @@ let detail = new Schema({
     type: String,
     required:true
   },
-  age: {
-    type: Number
+  email: {
+    type: String,
+    required:true
   },
 
-  breed: {
-    type: String
+  password: {
+    type: String,
+    required:true
   }
 });
 
